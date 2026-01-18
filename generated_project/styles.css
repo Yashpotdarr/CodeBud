@@ -1,0 +1,175 @@
+/*
+ * Calculator UI Styles
+ * -------------------------------------------------
+ * This stylesheet defines a responsive, accessible design for the
+ * simple calculator found in index.html. It uses CSS custom properties
+ * (variables) for easy theming and maintains a clear hierarchy of styles.
+ */
+
+/* ------------------------------------------------------------------
+ * Root variables – colour palette, typography and spacing
+ * ------------------------------------------------------------------ */
+:root {
+  /* Colours */
+  --color-bg: #f5f5f5;
+  --color-surface: #ffffff;
+  --color-primary: #2c3e50;          /* dark slate for text */
+  --color-primary-light: #34495e;   /* slightly lighter for hover */
+  --color-operator: #e67e22;        /* orange for operators */
+  --color-operator-light: #d35400;
+  --color-equals: #27ae60;          /* green for equals */
+  --color-equals-light: #1e8449;
+  --color-clear: #c0392b;           /* red for clear */
+  --color-clear-light: #922b21;
+  --color-border: #dcdcdc;
+
+  /* Typography */
+  --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-size-display: 2rem;
+  --font-size-btn: 1.25rem;
+  --font-weight: 400;
+
+  /* Spacing */
+  --spacing: 1rem;
+  --spacing-sm: 0.5rem;
+  --border-radius: 0.75rem;
+  --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* ------------------------------------------------------------------
+ * Global resets – keep the UI tidy
+ * ------------------------------------------------------------------ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family);
+  background: var(--color-bg);
+  color: var(--color-primary);
+  line-height: 1.5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* ------------------------------------------------------------------
+ * Calculator container
+ * ------------------------------------------------------------------ */
+.calculator {
+  max-width: 400px;
+  width: 100%;
+  margin: var(--spacing) auto;
+  background: var(--color-surface);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  padding: var(--spacing);
+}
+
+/* ------------------------------------------------------------------
+ * Display – read‑only input field
+ * ------------------------------------------------------------------ */
+.display {
+  width: 100%;
+  font-size: var(--font-size-display);
+  font-weight: var(--font-weight);
+  text-align: right;
+  padding: var(--spacing-sm) var(--spacing);
+  border: 1px solid var(--color-border);
+  border-radius: calc(var(--border-radius) / 2);
+  background: var(--color-surface);
+  color: var(--color-primary);
+  cursor: not-allowed; /* disabled cursor */
+  margin-bottom: var(--spacing);
+}
+
+/* ------------------------------------------------------------------
+ * Buttons grid layout
+ * ------------------------------------------------------------------ */
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--spacing-sm);
+}
+
+/* ------------------------------------------------------------------
+ * Base button style
+ * ------------------------------------------------------------------ */
+.btn {
+  background: var(--color-primary-light);
+  color: #fff;
+  border: none;
+  border-radius: calc(var(--border-radius) / 2);
+  font-size: var(--font-size-btn);
+  font-weight: var(--font-weight);
+  padding: var(--spacing-sm);
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.btn:hover,
+.btn:focus {
+  background: var(--color-primary);
+  outline: none;
+  transform: translateY(-1px);
+}
+
+/* ------------------------------------------------------------------
+ * Modifier classes for specific button groups
+ * ------------------------------------------------------------------ */
+.btn-operator {
+  background: var(--color-operator);
+}
+
+.btn-operator:hover,
+.btn-operator:focus {
+  background: var(--color-operator-light);
+}
+
+.btn-equals {
+  background: var(--color-equals);
+  grid-column: span 4; /* already set inline but keep for safety */
+}
+
+.btn-equals:hover,
+.btn-equals:focus {
+  background: var(--color-equals-light);
+}
+
+.btn-clear {
+  background: var(--color-clear);
+}
+
+.btn-clear:hover,
+.btn-clear:focus {
+  background: var(--color-clear-light);
+}
+
+/* ------------------------------------------------------------------
+ * Responsive adjustments – mobile first
+ * ------------------------------------------------------------------ */
+@media (max-width: 600px) {
+  :root {
+    --font-size-display: 1.5rem;
+    --font-size-btn: 1rem;
+    --spacing-sm: 0.35rem;
+  }
+
+  .calculator {
+    padding: var(--spacing-sm);
+  }
+
+  .display {
+    padding: var(--spacing-sm) var(--spacing-sm);
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .btn {
+    padding: var(--spacing-sm);
+  }
+}
